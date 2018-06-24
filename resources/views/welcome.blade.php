@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome to my first site on PHP
+                    Welcome  PHP
                 </div>
 
                 <div class="links">
