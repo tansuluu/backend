@@ -17,6 +17,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('user.index');
+Route::get('/home',function () {
+    return view('home');
+});
+
 
 Route::resource('user', 'HomeController');
+Route::resource('post', 'IndexController');
+
+
+Route::get('addPost','IndexController@add')->name('addPost');
+
+Route::post('addPost','IndexController@save')->name('savePost');
+
+Route::get('posts','IndexController@index');
+
+Route::post('editPost/{id}','IndexController@update')->name('updatePost');

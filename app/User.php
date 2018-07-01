@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -26,4 +28,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function editUserData(Request $request, $id){
+        $user = User::find($id);
+        $user->name = $request->get('name');
+        $user->password = bcrypt($request->get('password'));
+        $user->phone_number = $request->get('phone_number');
+        $user->town = $request->get('town');
+        if($user->save()){
+            return true;
+        }
+        else return false;
+
+    }
 }

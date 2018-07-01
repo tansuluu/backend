@@ -46,12 +46,16 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <li><a href="{{action('IndexController@index')}}">Posts</a></li>
+                            <li><a href="{{action('HomeController@index')}}">Users</a></li>
+                            <li><a href="{{route('addPost')}}">Add post</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    <li><a href="{{action('HomeController@edit',\Illuminate\Support\Facades\Auth::id())}}">Settings</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

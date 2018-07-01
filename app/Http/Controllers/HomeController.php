@@ -36,16 +36,16 @@ class HomeController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name'    =>  'required',
-            'password' => 'required|string|min:6'
-        ]);
-        $user = User::find($id);
-        $user->name = $request->get('name');
-        $user->password = $request->get('password');
-        $user->phone_number = $request->get('phone_number');
-        $user->town = $request->get('town');
-        $user->save();
-        return redirect()->route('user.index')->with('success', 'Data Updated');
+            $this->validate($request, [
+                'name' => 'required',
+                'password' => 'required|string|min:6|confirmed'
+            ]);
+            $classA = new User();
+            if ($classA->editUserData($request, $id)) {
+                return redirect()->route('user.index')->with('success', 'Data Updated');
+            } else {
+                return redirect()->route('user.index')->with('success', 'Something wrong');
+
+        }
     }
 }
